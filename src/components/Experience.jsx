@@ -8,7 +8,6 @@ import { Mountain } from "./mountain";
 import { Text } from "@react-three/drei";
 import { Html } from "@react-three/drei";
 import LoginPage from "./LoginPage";
-import { RoundedBox } from "@react-three/drei";
 
 const LINE_NB_POINTS = 12000;
 
