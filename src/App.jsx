@@ -1,22 +1,17 @@
-import { Canvas } from "@react-three/fiber";
-import { Experience } from "./components/Experience";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
-import * as THREE from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
-import { Html } from "@react-three/drei";
-import { Environment } from "@react-three/drei";
 import annotations from './annotations.json';
+import { useRef, useState } from "react";
 
-
-function Buttons() {
-    console.log(annotations);
+function Buttons({gotoAnnotation}) {
     return (
       <div id="annotationsPanel">
         <ul>
           {annotations.map((a, i) => {
             return (
               <li key={i}>
-                <button key={i} className="annotationButton" onClick={() => console.log('Go to annotation')}>
+                <button key={i} className="annotationButton" onClick={() => gotoAnnotation(i)}>
                   {a.title}
                 </button>
               </li>
@@ -25,20 +20,36 @@ function Buttons() {
         </ul>
       </div>
     )
-  }
+}
 
 function App() {
+
+  const [target, setTarget] = useState()
+  const targetPosition = useRef();
+  const [lerping, setLerping] = useState(false)
+
+  function gotoAnnotation(idx) {
+    setTarget(annotations[idx].lookAt)
+    setLerping(true)
+  }
+
+ 
   return (
     <>
-      <Canvas>
-      <color attach="background" args={["#ececec"]} />
-      {/* <OrbitControls /> */}
-        <ScrollControls pages={5} damping={0.3}>
-          {/* <Experience /> */}
-          <Tunnel />
-        </ScrollControls>
+      <Canvas
+      camera={{ position: [8, 2, 12] }}
+      onPointerDown={() => setLerping(false)}
+      onWheel={() => setLerping(false)}
+      onScroll = {() => setLerping(false)}
+      >
+        <color attach="background" args={["#ececec"]} />
+        <group ref={targetPosition}>
+          {/* <ScrollControls pages={5} damping={0.3}> */}
+            <Tunnel position={target} lerping={lerping}/>
+          {/* </ScrollControls> */}
+        </group>
       </Canvas>
-      <Buttons/>
+      <Buttons gotoAnnotation={gotoAnnotation} />
     </>
   );
 }

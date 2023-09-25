@@ -4,10 +4,33 @@ import { useScroll, Text } from '@react-three/drei';
 import { Background } from './Background';
 import { PerspectiveCamera } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import annotations from '../annotations.json';
 
-
+function MyText(){
+  return(
+    <>
+    {annotations.map((a, i) => {
+      return (
+        <group key={i} position={[a.lookAt.x,a.lookAt.y,a.lookAt.z]}>
+          <Text
+                color="white"
+                anchorX={"center"}
+                anchorY="middle"
+                fontSize={0.22}
+                textAlign="center"
+                maxWidth={4}
+                font={"./fonts/Inter-Regular.ttf"}
+              >
+                {a.title}
+            </Text>
+        </group>
+      )
+    })}
+    </>
+  )
+}
 const LINE_NB_POINTS = 15000;
-const Tunnel = () => { 
+const Tunnel = ({position,lerping}) => { 
     const curve = useMemo(() => {
         return new THREE.CatmullRomCurve3(
           [
@@ -48,37 +71,47 @@ const Tunnel = () => {
 
     //  References Refs
       const cameraGroup = useRef();
-      const scroll = useScroll();
+      // const scroll = useScroll();
 
 
     useFrame((_state, delta) => {
-        const curPointIndex = Math.min(
-          Math.round(scroll.offset * linePoints.length),
-          linePoints.length - 1
-        );
-        const curPoint = linePoints[curPointIndex];
-        const pointAhead =
-          linePoints[Math.min(curPointIndex + 1, linePoints.length - 1)];
+
+      if(lerping){
+        cameraGroup.current.position.lerp(position, delta * 2);
+      }
+   
+        // const curPointIndex = Math.min(
+        //   Math.round(scroll.offset * linePoints.length),
+        //   linePoints.length - 1
+        // );
+        // const curPoint = linePoints[curPointIndex];
+        // const pointAhead =
+        //   linePoints[Math.min(curPointIndex + 1, linePoints.length - 1)];
     
-        const xDisplacement = (pointAhead.x - curPoint.x) * 80;
+        // const xDisplacement = (pointAhead.x - curPoint.x) * 80;
     
-        // Math.PI / 2 -> LEFT
-        // -Math.PI / 2 -> RIGHT
+        // // Math.PI / 2 -> LEFT
+        // // -Math.PI / 2 -> RIGHT
     
-        const angleRotation =
-          (xDisplacement < 0 ? 1 : -1) *
-          Math.min(Math.abs(xDisplacement), Math.PI / 3);
+        // const angleRotation =
+        //   (xDisplacement < 0 ? 1 : -1) *
+        //   Math.min(Math.abs(xDisplacement), Math.PI / 3);
     
-        const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(
-            cameraGroup.current.rotation.x,
-            angleRotation,
-            cameraGroup.current.rotation.z
-          )
-        );
+        // const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
+        //   new THREE.Euler(
+        //     cameraGroup.current.rotation.x,
+        //     angleRotation,
+        //     cameraGroup.current.rotation.z
+        //   )
+        // );
     
-        cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
-        cameraGroup.current.position.lerp(curPoint, delta * 2);
+        // cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
+        // if(lerping){
+        //   cameraGroup.current.position.lerp(position, delta * 2);
+        // }else
+        // {
+        //   cameraGroup.current.position.lerp(curPoint, delta * 2);
+        // }
       });
 
   return (
@@ -110,103 +143,8 @@ const Tunnel = () => {
         </mesh>
       </group>
 
-
-      {/* TEXT : Far towards near*/}
-      <group position={[-0.2, 0, -151]}>
-        <Text
-          color="white"
-          anchorX={"center"}
-          anchorY="middle"
-          fontSize={1}
-          textAlign="center"
-          maxWidth={4}
-          font={"./fonts/Inter-Regular.ttf"}
-          // marginBottom= {2}
-        >
-          ORIZON{"\n"}
-        </Text>
-        <Text
-          color="white"
-          anchorX={"center"}
-          anchorY="middle"
-          fontSize={0.22}
-          textAlign="center"
-          maxWidth={4}
-          font={"./fonts/Inter-Regular.ttf"}
-        >
-          Welcome . Share . Innovate
-        </Text>
-      </group>
-
-      <group position={[-0.2, 0, -90]}>
-      <Text
-        color="white"
-        anchorX={"center"}
-        anchorY="middle"
-        fontSize={0.22}
-        textAlign="center"
-        maxWidth={4}
-        font={"./fonts/Inter-Regular.ttf"}
-      >
-        Director Words
-      </Text>
-      </group>
-
-      <group position={[-0.2, 0, -80]}>
-      <Text
-        color="white"
-        anchorX={"center"}
-        anchorY="middle"
-        fontSize={0.22}
-        textAlign="center"
-        maxWidth={4}
-        font={"./fonts/Inter-Regular.ttf"}
-      >
-        New Arrivals
-      </Text>
-      </group>
-
-      <group position={[-0.2, 0, -50]}>
-      <Text
-        color="white"
-        anchorX={"center"}
-        anchorY="middle"
-        fontSize={0.22}
-        textAlign="center"
-        maxWidth={4}
-        font={"./fonts/Inter-Regular.ttf"}
-      >
-        BirthDays
-      </Text>
-      </group>
-
-      <group position={[-0.2, 0, -25]}>
-      <Text
-        color="white"
-        anchorX={"center"}
-        anchorY="middle"
-        fontSize={0.22}
-        textAlign="center"
-        maxWidth={4}
-        font={"./fonts/Inter-Regular.ttf"}
-      >
-        Your Weather
-      </Text>
-      </group>
-
-      <group position={[-0.2, 0, -15]}>
-      <Text
-        color="white"
-        anchorX={"center"}
-        anchorY="middle"
-        fontSize={0.22}
-        textAlign="center"
-        maxWidth={4}
-        font={"./fonts/Inter-Regular.ttf"}
-      >
-        Welcome abroad Dude!
-      </Text>
-      </group>
+      {/* TEXT : Near towards far*/}
+      <MyText />
     </>
   )
 }
