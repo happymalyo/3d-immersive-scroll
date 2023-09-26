@@ -3,6 +3,8 @@ import { ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
 import annotations from './annotations.json';
 import { useRef, useState } from "react";
+import Welcome from "./pages/Welcome";
+import Menu from "./components/menu/menu";
 
 function Buttons({gotoAnnotation}) {
     return (
@@ -32,24 +34,29 @@ function App() {
     setTarget(annotations[idx].lookAt)
     setLerping(true)
   }
-
+  
+  window.onload = function() {
+    setTarget(annotations[0].lookAt)
+    setLerping(true)
+  };
  
   return (
     <>
       <Canvas
-      camera={{ position: [8, 2, 12] }}
       onPointerDown={() => setLerping(false)}
       onWheel={() => setLerping(false)}
       onScroll = {() => setLerping(false)}
       >
         <color attach="background" args={["#ececec"]} />
         <group ref={targetPosition}>
-          {/* <ScrollControls pages={5} damping={0.3}> */}
+         {/* <ScrollControls pages={5} damping={0.3}>  */}
             <Tunnel position={target} lerping={lerping}/>
-          {/* </ScrollControls> */}
+           {/* </ScrollControls> */}
         </group>
       </Canvas>
-      <Buttons gotoAnnotation={gotoAnnotation} />
+      {/*<Buttons gotoAnnotation={gotoAnnotation} /> */}
+      <Menu />
+      <Welcome/>
     </>
   );
 }

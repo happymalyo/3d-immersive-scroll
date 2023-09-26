@@ -1,0 +1,28 @@
+input[type=text] {
+    border: none;
+    background-color: #000;
+    outline: 0;
+    font-size: 55px;
+    width: 700px;
+    height: 100px;
+    text-align: left;
+    padding: 15px;
+    color:dimgrey;
+  }
+  
+  input[type=text]:focus {
+    border: none;
+    background-color: none;
+    outline: 0;
+    width: 700px;
+    height: 100px;
+  }
+  
+  .center { 
+    height: 40px;
+    width: 300px; 
+    overflow: auto;
+    margin: 550px auto 10px; 
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0; 
+  }

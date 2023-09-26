@@ -5,6 +5,8 @@ import { Background } from './Background';
 import { PerspectiveCamera } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import annotations from '../annotations.json';
+import { Mountain } from './mountain';
+import { Cloud } from "./Cloud";
 
 function MyText(){
   return(
@@ -16,7 +18,7 @@ function MyText(){
                 color="white"
                 anchorX={"center"}
                 anchorY="middle"
-                fontSize={0.22}
+                fontSize={0.15}
                 textAlign="center"
                 maxWidth={4}
                 font={"./fonts/Inter-Regular.ttf"}
@@ -77,41 +79,10 @@ const Tunnel = ({position,lerping}) => {
     useFrame((_state, delta) => {
 
       if(lerping){
-        cameraGroup.current.position.lerp(position, delta * 2);
+        cameraGroup.current.position.lerp(position, delta * 3);
+        cameraGroup.current.position.y = position.y - 0.2
       }
    
-        // const curPointIndex = Math.min(
-        //   Math.round(scroll.offset * linePoints.length),
-        //   linePoints.length - 1
-        // );
-        // const curPoint = linePoints[curPointIndex];
-        // const pointAhead =
-        //   linePoints[Math.min(curPointIndex + 1, linePoints.length - 1)];
-    
-        // const xDisplacement = (pointAhead.x - curPoint.x) * 80;
-    
-        // // Math.PI / 2 -> LEFT
-        // // -Math.PI / 2 -> RIGHT
-    
-        // const angleRotation =
-        //   (xDisplacement < 0 ? 1 : -1) *
-        //   Math.min(Math.abs(xDisplacement), Math.PI / 3);
-    
-        // const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
-        //   new THREE.Euler(
-        //     cameraGroup.current.rotation.x,
-        //     angleRotation,
-        //     cameraGroup.current.rotation.z
-        //   )
-        // );
-    
-        // cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
-        // if(lerping){
-        //   cameraGroup.current.position.lerp(position, delta * 2);
-        // }else
-        // {
-        //   cameraGroup.current.position.lerp(curPoint, delta * 2);
-        // }
       });
 
   return (
@@ -119,31 +90,38 @@ const Tunnel = ({position,lerping}) => {
       <ambientLight intensity={1} />
       <group ref={cameraGroup}>
         <Background/>
+        {/* <Environment
+          files="./background/sky1.hdr"
+          blur={0}
+          background
+        /> */}
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
       </group>
-        {/* LINE */}
-      <group position-y={-2}>
-        <mesh>
-          <extrudeGeometry
-            args={[
-              shape,
-              {
-                steps: LINE_NB_POINTS,
-                bevelEnabled: false,
-                extrudePath: curve,
-              },
-            ]}
-          />
-          <meshStandardMaterial
-            color={"white"}
-            opacity={1}
-            transparent
-            envMapIntensity={2}
-          />
-        </mesh>
-      </group>
-
+       {/* Model Mountain */}
+      <Mountain opacity={0.5} scale={[1, 0.6, 0.3]} position-y={-1.5}/>
+      <Mountain opacity={0.5} scale={[1.5, 0.19, 0.5]} position-y={-1.5} position-x={-2} position-z={-6} />
+      <Mountain opacity={0.5} scale={[1.5, 0.19, 0.4]} position-y={-1} position-x={2} position-z={-12} />
+      <Mountain opacity={0.5} scale={[1, 0.19, 1]} position-y={-1.5} position-x={2} position-z={-6} />
+      <Mountain opacity={0.5} scale={[1, 0.19,0.5]} position-y={-1.5} position-x={-4} position-z={-12} />
       {/* TEXT : Near towards far*/}
+      <group position={[-0.1,0.5,-1.3]}>
+          <Text
+                color="white"
+                anchorX={"center"}
+                anchorY="middle"
+                fontSize={0.6}
+                textAlign="center"
+                maxWidth={6}
+                letterSpacing={0.3}
+                font={"./fonts/Inter-Regular.ttf"}
+              >
+                Emmanuel
+            </Text>
+        </group>
+        <Cloud opacity={0.1} 
+        scale={[0.3, 0.3, 0.3]} 
+        position={[-2, 0.5, -3]} 
+        />
       <MyText />
     </>
   )

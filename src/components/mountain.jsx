@@ -37,12 +37,14 @@ export function Mountain(props) {
           receiveShadow
           geometry={nodes.Object_5.geometry}
           material={materials["Material.001"]}
+          material-color = {"black"}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_6.geometry}
           material={materials["Material.001"]}
+          material-color = {"black"}
         />
       </group>
     </group>

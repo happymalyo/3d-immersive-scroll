@@ -4,24 +4,41 @@ import { Gradient, LayerMaterial } from "lamina";
 import * as THREE from "three";
 
 export const Background = () => {
+  const colorA = "#4D4D4D";
+  const colorB = "#FF8C00";
+  const start = 0.2;
+  const end = -0.5;
   return (
     <>
-      <Sphere scale={[100, 100, 100]} rotation-y={Math.PI / 2}>
-        <LayerMaterial
-          color={"#ffffff"}
-          lighting="physical"
-          transmission={1}
-          side={THREE.BackSide}
-        >
+      <Sphere scale={[500, 500, 500]} rotation-y={Math.PI / 2}>
+        <LayerMaterial color={"#ffffff"} side={THREE.BackSide}>
           <Gradient
-            colorA={"#357ca1"}
-            colorB={"white"}
+            colorA={colorA}
+            colorB={colorB}
             axes={"y"}
-            start={0}
-            end={-0.5}
+            start={start}
+            end={end}
           />
         </LayerMaterial>
       </Sphere>
+      <Environment 
+      resolution={256}>
+        <Sphere
+          scale={[100, 100, 100]}
+          rotation-y={Math.PI / 2}
+          rotation-x={Math.PI}
+        >
+          <LayerMaterial color={"#ffffff"} side={THREE.BackSide}>
+            <Gradient
+              colorA={"#4169E1"}
+              colorB={"#000"}
+              axes={"y"}
+              start={start}
+              end={end}
+            />
+          </LayerMaterial>
+        </Sphere>
+      </Environment>
     </>
   );
 };
