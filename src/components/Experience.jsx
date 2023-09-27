@@ -27,6 +27,7 @@ export const Experience = () => {
         new THREE.Vector3(0, 0, -80),
         new THREE.Vector3(0, 0, -90),
         new THREE.Vector3(0, 0, -100),
+        new THREE.Vector3(0, 0, -176),
       ],
       false,
       "catmullrom",

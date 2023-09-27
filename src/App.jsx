@@ -27,14 +27,12 @@ function Buttons({gotoAnnotation}) {
 function App() {
 
   const [target, setTarget] = useState()
-  const [activeStep, setActiveStep] = useState(0);
   const targetPosition = useRef();
   const [lerping, setLerping] = useState(false)
 
   function gotoAnnotation(idx) {
     setTarget(annotations[idx].lookAt)
     setLerping(true)
-    setActiveStep(idx);
   }
   
   window.onload = function() {
@@ -47,13 +45,13 @@ function App() {
       <Canvas
       onPointerDown={() => setLerping(false)}
       onWheel={() => setLerping(false)}
-      onScroll = {() => setLerping(false)}
+      // onScroll = {() => setLerping(false)}
       >
         <color attach="background" args={["#ececec"]} />
         <group ref={targetPosition}>
-         {/* <ScrollControls pages={5} damping={0.3}>  */}
+         <ScrollControls pages={5} damping={0.3}> 
             <Tunnel position={target} lerping={lerping}/>
-           {/* </ScrollControls> */}
+         </ScrollControls>
         </group>
       </Canvas>
       {/*<Buttons gotoAnnotation={gotoAnnotation} /> */}

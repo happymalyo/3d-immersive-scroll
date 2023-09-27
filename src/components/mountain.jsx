@@ -12,7 +12,7 @@ import { useGLTF } from "@react-three/drei";
 export function Mountain(props) {
   const { nodes, materials } = useGLTF("./models/mountain/model.glb");
   return (
-    <group {...props} dispose={null}>
+    <group scale={[0.3,0.3,100]} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           castShadow
