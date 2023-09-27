@@ -7,6 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import annotations from '../annotations.json';
 import { Mountain } from './mountain';
 import { Cloud } from "./Cloud";
+import { fadeOnBeforeCompile, fadeOnBeforeCompileFlat } from './utils/fadeMaterial';
 
 function MyText(){
   return(
@@ -24,6 +25,10 @@ function MyText(){
                 font={"./fonts/Inter-Regular.ttf"}
               >
                 {a.title}
+                <meshStandardMaterial
+                  color={"white"}
+                  onBeforeCompile={fadeOnBeforeCompileFlat}
+                />
             </Text>
         </group>
       )
