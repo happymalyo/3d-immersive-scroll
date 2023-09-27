@@ -2,9 +2,9 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
 import annotations from './annotations.json';
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Welcome from "./pages/Welcome";
-import Menu from "./components/menu/menu";
+import Menu from "./components/menu/Menu";
 
 function Buttons({gotoAnnotation}) {
     return (
@@ -27,12 +27,14 @@ function Buttons({gotoAnnotation}) {
 function App() {
 
   const [target, setTarget] = useState()
+  const [activeStep, setActiveStep] = useState(0);
   const targetPosition = useRef();
   const [lerping, setLerping] = useState(false)
 
   function gotoAnnotation(idx) {
     setTarget(annotations[idx].lookAt)
     setLerping(true)
+    setActiveStep(idx);
   }
   
   window.onload = function() {
@@ -55,7 +57,7 @@ function App() {
         </group>
       </Canvas>
       {/*<Buttons gotoAnnotation={gotoAnnotation} /> */}
-      <Menu />
+      <Menu gotoAnnotation={gotoAnnotation} />
       <Welcome/>
     </>
   );

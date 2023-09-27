@@ -4,42 +4,8 @@ import Stepper from "@mui/material/Stepper";
 import { makeStyles } from '@material-ui/core/styles';
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-
+import annotations from '../../annotations.json';
 import Typography from "@mui/material/Typography";
-
-const steps = [
-  {
-    label: "welcome",
-    description: "",
-  },
-  {
-    label: "Your weather",
-    description: "",
-  },
-  {
-    label: "Birthday",
-    description: "",
-  },
-
-  {
-    label: "News arrivals",
-    description: "",
-  },
-
-  {
-    label: "Directors word",
-    description: "",
-  },
-
-  {
-    label: "WimTim",
-    description: "",
-  },
-  {
-    label: "ORIZON",
-    description: "",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,12 +18,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Menu = () => {
+const Menu = ({gotoAnnotation}) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const classes = useStyles();
-  const handleNext = (val) => {
-    setActiveStep(val);
-  };
 
   return (
     <div>
@@ -71,13 +34,16 @@ const Menu = () => {
           ".MuiStepConnector-line": { height: "100%" },
         }}
       >
-        {steps.map((step, index) => (
+        {annotations.map((step, index) => (
           <Step
-            key={step.label}
+            key={step.title}
             sx={{ ".MuiStepConnector-line": { height: "100%" } }}
           >
             <StepLabel
-              onClick={() => handleNext(index)}
+              onClick={() => {
+                gotoAnnotation(index);
+                setActiveStep(index);
+              }}
               sx={{
                 ">*": {
                   color: "white",
@@ -89,7 +55,7 @@ const Menu = () => {
               }}
             >
               <Typography variant="caption" color={"white"} className={classes.label}>
-                {step.label}
+                {step.title}
               </Typography>
             </StepLabel>
           </Step>
