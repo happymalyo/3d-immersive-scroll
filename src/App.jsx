@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ScrollControls, useScroll } from "@react-three/drei";
+import { Bvh, ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
 import annotations from './annotations.json';
 import React, { useRef, useState } from "react";
@@ -54,12 +54,13 @@ function App() {
       <Canvas
       onPointerDown={() => setLerping(false)}
       onWheel={() => setLerping(false)}
-      // onScroll = {() => setLerping(false)}
       >
         <color attach="background" args={["#ececec"]} />
         <group ref={targetPosition}>
          <ScrollControls pages={5} damping={0.3}> 
-            <Tunnel position={target} lerping={lerping}/>
+            <Bvh>
+             <Tunnel position={target} lerping={lerping}/>
+            </Bvh>
          </ScrollControls>
         </group>
       </Canvas>

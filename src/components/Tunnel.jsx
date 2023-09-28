@@ -7,7 +7,13 @@ import { useFrame } from '@react-three/fiber';
 import annotations from '../annotations.json';
 import { Mountain } from './mountain';
 import { Cloud } from "./Cloud";
+import { useThree } from '@react-three/fiber';
+import LensFlare from "./utils/UltimateLensFlare";
+import {BlendFunction } from 'postprocessing'
+// Remember to adjust the path to match your project's structure
 import { fadeOnBeforeCompile, fadeOnBeforeCompileFlat } from './utils/fadeMaterial';
+import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing'
+
 
 function MyText(){
   return(
@@ -36,6 +42,7 @@ function MyText(){
     </>
   )
 }
+
 const LINE_NB_POINTS = 300;
 const Tunnel = ({position,lerping}) => { 
     const curve = useMemo(() => {
@@ -102,13 +109,23 @@ const Tunnel = ({position,lerping}) => {
       <ambientLight intensity={1} />
       <group ref={cameraGroup}>
         {/* <Background/> */}
+        <EffectComposer>
+            <LensFlare
+              dirtTextureFile={"./background/sunset.png"}
+              blendFunction={BlendFunction.PIN_LIGHT}
+              position={{x: -15, y: 2, z: -100}}
+              // followMouse={true}
+            />
+          </EffectComposer>
         <Environment
-          files="./background/sky1.hdr"
-          blur={0}
-          background
+              files="./background/sky1.hdr"
+              blur={0}
+              background
         />
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
       </group>
+
+      
        {/* Model Mountain */}
       <Mountain opacity={0.5} scale={[1, 0.6, 0.3]} position-y={-1.5}/>
       <Mountain opacity={0.5} scale={[1.5, 0.19, 0.5]} position-y={-1.5} position-x={-2} position-z={-6} />

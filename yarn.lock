@@ -10,6 +10,11 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@andersonmancini/lens-flare@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@andersonmancini/lens-flare/-/lens-flare-1.0.1.tgz#04f4810a873508aa248d153f03d5d97996fc77a0"
+  integrity sha512-VhJpb0IFRW2Vlm57RuIoxZ6dgpsq8UnkI0w+MFe+fcnw0NDdhPCJeBgZEtWtza9dJGCxTEOEYMxk+ox3iSNQWw==
+
 "@ant-design/colors@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-7.0.0.tgz#eb7eecead124c3533aea05d61254f0a17f2b61b3"
@@ -1191,6 +1196,16 @@
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
+"@react-three/postprocessing@^2.15.1":
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.15.1.tgz#2a543bab9194b8470e7a81e37d95c2fdec08ff4d"
+  integrity sha512-JWkifAOLNRGkzAk2ImxG5V02aSga+P2jwEuT4LmJkaUj2KNWvw97pZbxTwnzNviccaYohxFJ2BmOISwZwx9FiQ==
+  dependencies:
+    maath "^0.6.0"
+    n8ao "^1.6.6"
+    postprocessing "^6.32.1"
+    three-stdlib "^2.23.4"
+
 "@reduxjs/toolkit@^1.9.6":
   version "1.9.6"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.6.tgz#fc968b45fe5b17ff90932c4556960d9c1078365a"
@@ -1205,6 +1220,11 @@
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.8.tgz#954f8008be8d9c65c4e58efa0937f32388ce3a38"
   integrity sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==
+
+"@types/draco3d@^1.4.0":
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/@types/draco3d/-/draco3d-1.4.6.tgz#7214bf6c67afbc8637a57c49f2daa52b5d4c3268"
+  integrity sha512-tAyEGmnz6qcPqSWoHtO3tTobQCDW0tW36gVdDKyN0jkT2S2w6LABe0+DdVkfVDwNzTwR7cE7LQGiGJiAsdSNKg==
 
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.2"
@@ -1280,6 +1300,11 @@
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz#b6725d5f4af24ace33b36fafd295136e75509f43"
   integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
+
+"@types/webxr@^0.5.2":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@types/webxr/-/webxr-0.5.5.tgz#9e0a27e809c8f76cc1ef525d9f96b8fd94ef9c42"
+  integrity sha512-HVOsSRTQYx3zpVl0c0FBmmmcY/60BkQLzVnpE9M1aG4f2Z0aKlBWfj4XZ2zr++XNBfkQWYcwhGlmuu44RJPDqg==
 
 "@use-gesture/core@10.2.24":
   version "10.2.24"
@@ -2058,6 +2083,11 @@ maath@^0.5.2:
   resolved "https://registry.yarnpkg.com/maath/-/maath-0.5.2.tgz#b1adc883360e45eff3041a2bce45f8cdc0cd6d43"
   integrity sha512-MFjfnXF5CzZaVnBuKc9y1FJh/BiPGqf19NH8Jm4o/jKTxuQ3RyPkcSIpuwdDhXrWROVKAxi3KjmHFUNMuIndbg==
 
+maath@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/maath/-/maath-0.6.0.tgz#7841d0fb95bbb37d19b08b7c5458ef70190950d2"
+  integrity sha512-dSb2xQuP7vDnaYqfoKzlApeRcR2xtN8/f7WV/TMAkBC8552TwTLtOO0JTcSygkYMjNDPoo6V01jTw/aPi4JrMw==
+
 magic-string@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.27.0.tgz#e4a3413b4bab6d98d2becffd48b4a257effdbbf3"
@@ -2097,6 +2127,11 @@ ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
+
+n8ao@^1.6.6:
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/n8ao/-/n8ao-1.6.8.tgz#93195eb7c29de962c24ddbbed7d04b72f7ee0d1c"
+  integrity sha512-3xaBaoMIplgPdBK+9mZefa8stWEoA2673h2734wYMxm/hUkMLENMhzymDe+WZueFQq93ly4xpl5s1NJrQBzFOQ==
 
 nanoid@^3.3.4:
   version "3.3.4"
@@ -2171,6 +2206,11 @@ postcss@^8.4.21:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+postprocessing@^6.32.1, postprocessing@^6.33.1:
+  version "6.33.1"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.33.1.tgz#a38df0efa75f0111282487d6058e1c8d783efdd5"
+  integrity sha512-dUxDGNgBzkTYjzkDVDBIFqZ6zLbzeaqwk8r3ZCMrv08MBX1c68goS8CKvwYvZtltacKnSSBv5f66HQgSSEOEBQ==
 
 potpack@^1.0.1:
   version "1.0.2"
@@ -2863,10 +2903,25 @@ three-stdlib@^2.21.8:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three@^0.150.1:
-  version "0.150.1"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.150.1.tgz#870d324a4d2daf1c7d55be97f3f73d83783e28be"
-  integrity sha512-5C1MqKUWaHYo13BX0Q64qcdwImgnnjSOFgBscOzAo8MYCzEtqfQqorEKMcajnA3FHy1yVlIe9AmaMQ0OQracNA==
+three-stdlib@^2.23.4:
+  version "2.26.9"
+  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.26.9.tgz#ab0d65ed71ac166eb7fbc057d63dbe258f615533"
+  integrity sha512-DoZDpcm5VhFRUn5BD3IzH8+x6ZlGrop3TxSr07PowijH4hPP5jjC/f+LQXOuCF9EkbhzittG8f23OCaBFqmQzQ==
+  dependencies:
+    "@types/draco3d" "^1.4.0"
+    "@types/offscreencanvas" "^2019.6.4"
+    "@types/webxr" "^0.5.2"
+    draco3d "^1.4.1"
+    fflate "^0.6.9"
+    ktx-parse "^0.4.5"
+    mmd-parser "^1.0.4"
+    potpack "^1.0.1"
+    zstddec "^0.0.2"
+
+three@0.151.3:
+  version "0.151.3"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.151.3.tgz#0b3c7de4b070d5b66b15217f42465d67cbfa6004"
+  integrity sha512-+vbuqxFy8kzLeO5MgpBHUvP/EAiecaDwDuOPPDe6SbrZr96kccF0ktLngXc7xA7bzyd3N0t2f6mw3Z9y6JCojQ==
 
 throttle-debounce@^5.0.0:
   version "5.0.0"
