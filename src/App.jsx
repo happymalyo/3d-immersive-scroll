@@ -5,6 +5,9 @@ import annotations from './annotations.json';
 import React, { useRef, useState } from "react";
 import Welcome from "./pages/Welcome";
 import Menu from "./components/menu/Menu";
+import { useSelector, useDispatch } from 'react-redux'
+import getIncrementAction from "./app/actions/Increment";
+import getZPosition from "./app/actions/GetZPosition";
 
 function Buttons({gotoAnnotation}) {
     return (
@@ -29,6 +32,12 @@ function App() {
   const [target, setTarget] = useState()
   const targetPosition = useRef();
   const [lerping, setLerping] = useState(false)
+  const position = useSelector((state) => state.position)
+  const dispatch = useDispatch()
+
+  // dispatch(getZPosition(15));
+  // console.log('Z position',position)
+
 
   function gotoAnnotation(idx) {
     setTarget(annotations[idx].lookAt)

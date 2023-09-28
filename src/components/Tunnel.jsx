@@ -101,7 +101,7 @@ const Tunnel = ({position,lerping}) => {
     <>
       <ambientLight intensity={1} />
       <group ref={cameraGroup}>
-        <Background/>
+        {/* <Background/> */}
         <Environment
           files="./background/sky1.hdr"
           blur={0}

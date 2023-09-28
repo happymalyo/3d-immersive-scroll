@@ -15,11 +15,13 @@
     "@mui/material": "^5.14.10",
     "@react-three/drei": "^9.56.28",
     "@react-three/fiber": "^8.11.5",
+    "@reduxjs/toolkit": "^1.9.6",
     "antd": "^5.9.3",
     "drei": "^2.2.21",
     "lamina": "^1.1.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
     "three": "^0.150.1"
   },
   "devDependencies": {
