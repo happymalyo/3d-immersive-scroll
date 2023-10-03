@@ -1,18 +1,15 @@
 import React, { useMemo,useRef } from 'react';
 import * as THREE from 'three';
 import { useScroll, Text, Environment } from '@react-three/drei';
-import { Background } from './Background';
 import { PerspectiveCamera } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import annotations from '../annotations.json';
 import { Mountain } from './mountain';
-import { Cloud } from "./Cloud";
-import { useThree } from '@react-three/fiber';
 import LensFlare from "./utils/UltimateLensFlare";
 import {BlendFunction } from 'postprocessing'
 // Remember to adjust the path to match your project's structure
-import { fadeOnBeforeCompile, fadeOnBeforeCompileFlat } from './utils/fadeMaterial';
-import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing'
+import { fadeOnBeforeCompileFlat } from './utils/fadeMaterial';
+import { EffectComposer } from '@react-three/postprocessing'
 
 
 function MyText(){
@@ -25,7 +22,7 @@ function MyText(){
                 color="white"
                 anchorX={"center"}
                 anchorY="middle"
-                fontSize={0.15}
+                fontSize={0.17}
                 textAlign="center"
                 maxWidth={4}
                 font={"./fonts/Inter-Regular.ttf"}
@@ -106,19 +103,19 @@ const Tunnel = ({position,lerping}) => {
 
   return (
     <>
-      <ambientLight intensity={1} />
+      <ambientLight intensity={2} />
       <group ref={cameraGroup}>
         {/* <Background/> */}
         <EffectComposer>
             <LensFlare
               dirtTextureFile={"./background/sunset.png"}
               blendFunction={BlendFunction.PIN_LIGHT}
-              position={{x: -15, y: 2, z: -100}}
+              position={{x: -18, y: 7, z: -100}}
               // followMouse={true}
             />
           </EffectComposer>
         <Environment
-              files="./background/sky1.hdr"
+              files="./background/sunset.hdr"
               blur={0}
               background
         />
@@ -142,17 +139,14 @@ const Tunnel = ({position,lerping}) => {
                 anchorY="middle"
                 fontSize={0.6}
                 textAlign="center"
+                fillOpacity={1}
                 maxWidth={6}
                 letterSpacing={0.3}
-                font={"./fonts/Inter-Regular.ttf"}
+                // font={"./fonts/Inter-Regular.ttf"}
               >
                 Emmanuel
             </Text>
         </group>
-        <Cloud opacity={0.1} 
-        scale={[0.3, 0.3, 0.3]} 
-        position={[-2, 0.5, -3]} 
-        />
       <MyText />
     </>
   )

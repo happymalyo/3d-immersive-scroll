@@ -2,12 +2,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Bvh, ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
 import annotations from './annotations.json';
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import Welcome from "./pages/Welcome";
 import Menu from "./components/menu/Menu";
 import { useSelector, useDispatch } from 'react-redux'
 import getIncrementAction from "./app/actions/Increment";
 import getZPosition from "./app/actions/GetZPosition";
+import RainScene from "./components/Rain";
+import { FogExp2 } from "three";
 
 function Buttons({gotoAnnotation}) {
     return (
@@ -48,26 +50,28 @@ function App() {
     setTarget(annotations[0].lookAt)
     setLerping(true)
   };
+
  
   return (
-    <>
+    <div style={{ height: '100vh' }}>
       <Canvas
-      onPointerDown={() => setLerping(false)}
-      onWheel={() => setLerping(false)}
+      // onPointerDown={() => setLerping(false)}
+      // onWheel={() => setLerping(false)}
       >
-        <color attach="background" args={["#ececec"]} />
-        <group ref={targetPosition}>
+        {/* <group ref={targetPosition}>
          <ScrollControls pages={5} damping={0.3}> 
             <Bvh>
              <Tunnel position={target} lerping={lerping}/>
             </Bvh>
          </ScrollControls>
-        </group>
+        </group> */}
+
+        <RainScene />
       </Canvas>
-      {/*<Buttons gotoAnnotation={gotoAnnotation} /> */}
-      <Menu gotoAnnotation={gotoAnnotation} />
-      <Welcome/>
-    </>
+      {/* <Buttons gotoAnnotation={gotoAnnotation} /> */}
+      {/* <Menu gotoAnnotation={gotoAnnotation} /> */}
+      {/* <Welcome/> */}
+    </div>
   );
 }
 

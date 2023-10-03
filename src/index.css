@@ -8,6 +8,10 @@ body,
   font-family: monospace;
 }
 
+canvas {
+  opacity: 0.6; /* Adjust the opacity as needed (0.0 to 1.0) */
+}
+
 #annotationsPanel {
   position: absolute;
   top: 60px;
