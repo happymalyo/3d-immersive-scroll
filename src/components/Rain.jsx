@@ -10,7 +10,7 @@ rainParticles = [],
 flash,
 rain,
 rainGeo,
-rainCount = 12000;
+rainCount = 15000;
 
 function RainGeometry() {
     // Initialize rain particles
@@ -20,12 +20,12 @@ function RainGeometry() {
     let sizes = [];
   
     for(let i=0; i < rainCount; i++){
-      positions.push(Math.random()*400-200);
-      positions.push(Math.random()*500-250);
-      positions.push(Math.random()*400-200);
-      sizes.push(15);
+      positions.push(Math.random()*300-200);
+      positions.push(Math.random()*400-250);
+      positions.push(Math.random()*300-200);
+      sizes.push(20);
     }
-  
+   
     rainGeo.setAttribute(
       "position",
       new THREE.BufferAttribute(new Float32Array(positions),3)
@@ -35,12 +35,15 @@ function RainGeometry() {
         "size",
         new THREE.BufferAttribute(new Float32Array(sizes),1)
     )
+
+    rainGeo.computeVertexNormals();
   
     const material = new THREE.PointsMaterial({
-      size: 1, // Adjust the size of the raindrops
-      color: 0xaaaaaa, 
+      size: 0.01, // Adjust the size of raindrops
+      blending: THREE.AdditiveBlending,
+      depthTest: false,
       transparent: true,
-      opacity: 0.7,
+      color: 0xaaaaaa,
     });
     
     rain = new THREE.Points(rainGeo, material);
@@ -59,46 +62,27 @@ function RainGeometry() {
 }
 
 
-function animate() {
-  cloudParticles.forEach((p) => {
-      p.rotation.z -= 0.002;
-  });
-  rainGeo.attributes.size.array.forEach((r, i) => {
-      r += 0.3
-  })
-
-  rainGeo.verticesNeedUpdate = true;
-
-  rain.position.z -= 0.222;
-  if(rain.position.z < -200) {
-      rain.position.z = 0;
-  }
-
-  if(Math.random() > 0.95 || flash.power > 100) {
-      if(flash.power > 100)
-      flash.position.set(Math.random() * 400, 300, + Math.random() * 200, 100);
-      flash.power = 50 + Math.random() * 500;
-  }
-  requestAnimationFrame(animate)
-}
-
-
 const RainScene = () => {
   useFrame(() => {
-    animate();
+    if(!rainGeo) {
+      return;
+    }
+
+    rainGeo.attributes.size.array.forEach((r, i) => {
+      r += 0.1; // Randomize raindrop sizes
+    })
+
+    rainGeo.verticesNeedUpdate = true;
+    rain.rotation.z += 0.005
+    rain.position.y -=  6; // Randomize raindrop sizes
+    if(rain.position.y < -100) {
+        rain.position.y = 0;
+    }
+
   })
   return (
     <>
-      <group>
-        <ambientLight intensity={0.55} />
-        <PerspectiveCamera makeDefault position={[0, 0, 1]} rotation={[1.16, -0.12, 0.27]} fov={60} near={1} far={1000} />
-        <directionalLight  color={0xffeedd} position={[0, 0, 1]} />
-        <pointLight color={0x062d89} intensity={30} distance={500} decay={1.7} position={[200, 300, 100]} />
-        <fog attach="fogExp2" args={[0x11111f, 0.002]} />
-        <group>
-         <RainGeometry/>
-        </group>
-      </group>
+      <RainGeometry/>
     </>
   );
 };

@@ -10,6 +10,7 @@ import {BlendFunction } from 'postprocessing'
 // Remember to adjust the path to match your project's structure
 import { fadeOnBeforeCompileFlat } from './utils/fadeMaterial';
 import { EffectComposer } from '@react-three/postprocessing'
+import { Background } from './Background';
 
 
 function MyText(){
@@ -90,10 +91,7 @@ const Tunnel = ({position,lerping}) => {
 
       if(lerping){
         cameraGroup.current.position.lerp(position, delta * 2);
-        // cameraGroup.current.position.y = position.y - 0.2
       }else{
-        // console.log('lerping',position)
-        // console.log('curPoint',curPoint)
         // Camera statique
         // cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
         cameraGroup.current.position.lerp(curPoint, delta * 2);
@@ -103,23 +101,26 @@ const Tunnel = ({position,lerping}) => {
 
   return (
     <>
-      <ambientLight intensity={2} />
+      <ambientLight intensity={0.55} /> 
+      <directionalLight  color={0xffeedd} position={[0, 0, 1]} />
+      <pointLight color={0x062d89} intensity={30} distance={500} decay={1.7} position={[200, 300, 100]} />
+      <fog attach="fogExp2" args={[0x11111f, 0.002]} />
       <group ref={cameraGroup}>
-        {/* <Background/> */}
+      <PerspectiveCamera position={[0, 0, 5]}  makeDefault />
+        <Background/>
         <EffectComposer>
             <LensFlare
               dirtTextureFile={"./background/sunset.png"}
-              blendFunction={BlendFunction.PIN_LIGHT}
+              blendFunction={BlendFunction.SKIP}
               position={{x: -18, y: 7, z: -100}}
               // followMouse={true}
             />
           </EffectComposer>
-        <Environment
-              files="./background/sunset.hdr"
+        {/* <Environment
+              files="./background/sky2.hdr"
               blur={0}
               background
-        />
-        <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
+        /> */}
       </group>
 
       

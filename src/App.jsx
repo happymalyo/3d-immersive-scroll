@@ -56,20 +56,20 @@ function App() {
     <div style={{ height: '100vh' }}>
       <Canvas
       // onPointerDown={() => setLerping(false)}
-      // onWheel={() => setLerping(false)}
+      onWheel={() => setLerping(false)}
       >
-        {/* <group ref={targetPosition}>
+        <group ref={targetPosition}>
          <ScrollControls pages={5} damping={0.3}> 
             <Bvh>
              <Tunnel position={target} lerping={lerping}/>
+             <RainScene />
             </Bvh>
          </ScrollControls>
-        </group> */}
-
-        <RainScene />
+        </group>
+        
       </Canvas>
       {/* <Buttons gotoAnnotation={gotoAnnotation} /> */}
-      {/* <Menu gotoAnnotation={gotoAnnotation} /> */}
+      <Menu gotoAnnotation={gotoAnnotation} />
       {/* <Welcome/> */}
     </div>
   );

@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export const Background = () => {
   const colorA = "#4D4D4D";
-  const colorB = "#FF8C00";
+  const colorB = "#Dff0Df";
   const start = 0.2;
   const end = -0.5;
   return (
@@ -30,8 +30,8 @@ export const Background = () => {
         >
           <LayerMaterial color={"#ffffff"} side={THREE.BackSide}>
             <Gradient
-              colorA={"#4169E1"}
-              colorB={"#000"}
+              colorA={colorA}
+              colorB={colorB}
               axes={"y"}
               start={start}
               end={end}
