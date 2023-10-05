@@ -39,7 +39,7 @@ function RainGeometry() {
     rainGeo.computeVertexNormals();
   
     const material = new THREE.PointsMaterial({
-      size: 0.01, // Adjust the size of raindrops
+      size: 0.5, // Adjust the size of raindrops
       blending: THREE.AdditiveBlending,
       depthTest: false,
       transparent: true,
@@ -47,7 +47,7 @@ function RainGeometry() {
     });
     
     rain = new THREE.Points(rainGeo, material);
-
+    console.log(rain.position)
     // Point Light
     flash = new THREE.PointLight(0x062d89, 30, 500, 1.7);
     flash.position.set(200,300, 100);
@@ -80,6 +80,7 @@ const RainScene = () => {
     }
 
   })
+
   return (
     <>
       <RainGeometry/>

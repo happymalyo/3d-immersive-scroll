@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Bvh, ScrollControls, useScroll } from "@react-three/drei";
 import Tunnel from "./components/Tunnel";
+import { PerspectiveCamera} from '@react-three/drei/core';
 import annotations from './annotations.json';
 import React, { useRef, useState, Suspense } from "react";
 import Welcome from "./pages/Welcome";
@@ -10,6 +11,8 @@ import getIncrementAction from "./app/actions/Increment";
 import getZPosition from "./app/actions/GetZPosition";
 import RainScene from "./components/Rain";
 import { FogExp2 } from "three";
+import RealisticRainScene from "./components/RealisticRain";
+import { Background } from "./components/Background";
 
 function Buttons({gotoAnnotation}) {
     return (
@@ -58,15 +61,27 @@ function App() {
       // onPointerDown={() => setLerping(false)}
       onWheel={() => setLerping(false)}
       >
-        <group ref={targetPosition}>
+      <ambientLight intensity={0.55} /> 
+      <directionalLight  color={0xffeedd} position={[0, 0, 1]} />
+      <pointLight color={0x062d89} intensity={30} distance={500} decay={1.7} position={[200, 300, 100]} />
+      <fog attach="fogExp2" args={[0x11111f, 0.002]} />
+      <PerspectiveCamera
+        makeDefault // Near clipping plane
+        far={1000} // Far clipping plane
+        position={[0, 0, 100]}
+        lookAt={[0, 0, 0]}
+    />
+        {/* <group ref={targetPosition}>
          <ScrollControls pages={5} damping={0.3}> 
             <Bvh>
              <Tunnel position={target} lerping={lerping}/>
              <RainScene />
             </Bvh>
          </ScrollControls>
-        </group>
-        
+        </group> */}
+        {/* <Background/> */}
+        <RainScene />
+        {/* <RealisticRainScene/> */}
       </Canvas>
       {/* <Buttons gotoAnnotation={gotoAnnotation} /> */}
       <Menu gotoAnnotation={gotoAnnotation} />
