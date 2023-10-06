@@ -30,17 +30,17 @@ var clock = new THREE.Clock( true );
 
 function RealisticRain() {
     for (let i = 0; i < N; i++) {
-        snowflakesPositions.push(
-            Math.random()*300-200, // x
-            Math.random()*400-250,         // y
-            Math.random()*300-200                               // z
-        );
-
         // snowflakesPositions.push(
-        //       THREE.MathUtils.randFloatSpread(150), // x
-        //       -0.6 * window.innerHeight,         // y
-        //       0                                   // z
-        //     );
+        //     Math.random()*300-200, // x
+        //     Math.random()*400-250,         // y
+        //     Math.random()*300-200                               // z
+        // );
+
+        snowflakesPositions.push(
+              THREE.MathUtils.randFloatSpread(150), // x
+              -0.6 * window.innerHeight,         // y
+              0                                   // z
+            );
       
         speeds.push(
           THREE.MathUtils.randFloat(-20, 20), // x speed
@@ -62,7 +62,7 @@ function RealisticRain() {
             size: 4,
             map: snowflakeTexture,
             transparent: true,
-            // opacity:0.3, 
+            opacity:0.5, 
             depthWrite: false,
             blending: THREE.AdditiveBlending,
         });
@@ -93,7 +93,7 @@ function animate() {
         positions[i3 + 1] += speeds[i3Speed + 1] * dTime;
 
         // Adjust the condition for acceleration based on your desired effect
-        if (speeds[i3Speed + 1] > -400) speeds[i3Speed + 1] -= 5; 
+        if (speeds[i3Speed + 1] > -400 - (1%400)) speeds[i3Speed + 1] -= 5; 
 
         if (positions[i3 + 1] < -window.innerHeight / 2) {
             positions[i3 + 1] = window.innerHeight / 2 + Math.random() * 100; // Use Math.random() for more natural variation
@@ -102,7 +102,7 @@ function animate() {
 
             // Adjust the range of random speeds for a more natural look
             speeds[i3Speed] = THREE.MathUtils.randFloat(-20, 20); 
-            speeds[i3Speed + 1] = -100;
+            speeds[i3Speed + 1] = -400;
             speeds[i3Speed + 2] = 0;
         }
     }

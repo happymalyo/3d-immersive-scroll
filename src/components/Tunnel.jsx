@@ -107,7 +107,7 @@ const Tunnel = ({position,lerping}) => {
       <fog attach="fogExp2" args={[0x11111f, 0.002]} />
       <group ref={cameraGroup}>
       <PerspectiveCamera position={[0, 0, 5]}  makeDefault />
-        <Background/>
+        {/* <Background/> */}
         <EffectComposer>
             <LensFlare
               dirtTextureFile={"./background/sunset.png"}
@@ -116,11 +116,11 @@ const Tunnel = ({position,lerping}) => {
               // followMouse={true}
             />
           </EffectComposer>
-        {/* <Environment
+        <Environment
               files="./background/sky2.hdr"
               blur={0}
               background
-        /> */}
+        />
       </group>
 
       

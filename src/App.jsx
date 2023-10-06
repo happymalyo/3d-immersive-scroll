@@ -61,27 +61,25 @@ function App() {
       // onPointerDown={() => setLerping(false)}
       onWheel={() => setLerping(false)}
       >
-      <ambientLight intensity={0.55} /> 
-      <directionalLight  color={0xffeedd} position={[0, 0, 1]} />
-      <pointLight color={0x062d89} intensity={30} distance={500} decay={1.7} position={[200, 300, 100]} />
-      <fog attach="fogExp2" args={[0x11111f, 0.002]} />
-      <PerspectiveCamera
+      {/* <PerspectiveCamera
         makeDefault // Near clipping plane
-        far={1000} // Far clipping plane
+        // near={0}
+        far={2000} // Far clipping plane
         position={[0, 0, 100]}
         lookAt={[0, 0, 0]}
-    />
-        {/* <group ref={targetPosition}>
+      /> */}
+        <group ref={targetPosition}>
          <ScrollControls pages={5} damping={0.3}> 
             <Bvh>
              <Tunnel position={target} lerping={lerping}/>
+             {/* <RealisticRainScene/> */}
              <RainScene />
             </Bvh>
          </ScrollControls>
-        </group> */}
-        {/* <Background/> */}
-        <RainScene />
-        {/* <RealisticRainScene/> */}
+        </group>
+        <Background/>
+        
+        
       </Canvas>
       {/* <Buttons gotoAnnotation={gotoAnnotation} /> */}
       <Menu gotoAnnotation={gotoAnnotation} />
