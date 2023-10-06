@@ -111,8 +111,8 @@ const Tunnel = ({position,lerping}) => {
         <EffectComposer>
             <LensFlare
               dirtTextureFile={"./background/sunset.png"}
-              blendFunction={BlendFunction.SKIP}
-              position={{x: -18, y: 7, z: -100}}
+              blendFunction={BlendFunction.DARK}   //LINEAR_LIGHT
+              position={{x: -18, y: 7, z: -80}}
               // followMouse={true}
             />
           </EffectComposer>

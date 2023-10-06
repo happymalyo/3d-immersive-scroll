@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 
 let flash,
 rain,
-rainCount = 3000;
+rainCount = 6000;
 var M = 0; // actual number of snowflakes
 let rainGeo = new THREE.BufferGeometry();
 const speeds = [];
@@ -13,17 +13,17 @@ var clock = new THREE.Clock( true );
 
 // generate snowflake texture
 var canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = 90;
+    canvas.height = 5;
     
 var context = canvas.getContext('2d');
 
 var gradient = context.createRadialGradient( 15, 15, 2, 15, 15, 15 );
-    gradient.addColorStop( 0, 'white' );
+    gradient.addColorStop( 0.5, 'white' );
     gradient.addColorStop( 1, 'rgba(255,255,255,0)' );
 
 context.fillStyle = gradient;
-context.fillRect(0, 0, 32, 32 );
+context.fillRect(0, 0, 60, 10 );
 
 var snowflakeTexture = new THREE.CanvasTexture( canvas );
 
@@ -31,16 +31,17 @@ function RainGeometry() {
     let sizes = [];
     const rainPositions = [];
     for(let i=0; i < rainCount; i++){
+      
       rainPositions.push(Math.random()*400-200);
       rainPositions.push(Math.random()*500-250);
       rainPositions.push(Math.random()*400-200);
 
-
-      // rainPositions.push(
-      //   THREE.MathUtils.randFloatSpread(150), // x
-      //   -100 * window.innerHeight,         // y
-      //   100                                 // z
-      // );
+    //  rainPositions.set(
+    //     THREE.MathUtils.randFloatSpread(150), // x
+    //     -100 * window.innerHeight,         // y
+    //     100                                 // z
+    //   );
+      
 
       speeds.push(
         THREE.MathUtils.randFloat(-20, 20), // x speed
@@ -66,18 +67,17 @@ function RainGeometry() {
     // rainGeo.computeVertexNormals();
   
     const material = new THREE.PointsMaterial({
-      // color: 0xa0a0ff,
-      color: 0xaaaaaa,
-      size: 4,
+      color: 0xa0a0ff,
+      // color: 0xaaaaaa,
+      size: 2,
       map: snowflakeTexture,
       transparent: true,
-      opacity:0.3, 
+      opacity:0.4, 
       blending: THREE.AdditiveBlending,
       depthWrite: true
     });
     
     rain = new THREE.Points(rainGeo, material);
-
     // Point Light
     flash = new THREE.PointLight(0x062d89, 30, 500, 1.7);
     flash.position.set(200,300, 100);

@@ -77,8 +77,6 @@ function App() {
             </Bvh>
          </ScrollControls>
         </group>
-        <Background/>
-        
         
       </Canvas>
       {/* <Buttons gotoAnnotation={gotoAnnotation} /> */}
