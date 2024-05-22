@@ -20,8 +20,7 @@ immersive scroll is an innovative web project designed to welcome users into a c
 1. **Welcome and Introduction**
 
    - Start with a visually appealing welcome screen featuring a brief animation or transition.
-   - Display a warm, welcoming message such as "Welcome to ScrollSphere!"
-   - Include a prominent "Start" button to proceed.
+   - Display a warm, welcoming message such as "Welcome to Immersive Scroll!"
 
 2. **Emotion Check-In**
 
@@ -38,8 +37,6 @@ immersive scroll is an innovative web project designed to welcome users into a c
 4. **Highlight of the Day**
 
    - Introduce a feature that highlights the "User of the Day" or "CTO World" if applicable. This could be an inspirational figure or a daily featured user.
-   - Display a message like, "Today's inspiration is [User/CTO Name], known for [achievement or quality]."
-   - Include a relevant image or icon to make this section visually appealing.
 
 5. **Begin Your 3D Journey**
    - Smoothly transition from the introductory steps to the main 3D immersive experience.
@@ -47,7 +44,7 @@ immersive scroll is an innovative web project designed to welcome users into a c
 
 ## Getting Started
 
-To get started with ScrollSphere, follow these steps:
+To get started with Immersive scroll, follow these steps:
 
 1. **Clone the Repository**
 
