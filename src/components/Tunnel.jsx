@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { useScroll, Text, Environment } from '@react-three/drei';
 import { PerspectiveCamera } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import annotations from '../annotations.json';
+import annotations from '../constants/annotations.json';
 import { Mountain } from './mountain';
 import LensFlare from "./utils/UltimateLensFlare";
 import {BlendFunction } from 'postprocessing'
@@ -127,7 +127,7 @@ const Tunnel = ({position,lerping}) => {
        {/* Model Mountain */}
       <Mountain opacity={0.5} scale={[1, 0.6, 0.3]} position-y={-1.5}/>
       <Mountain opacity={0.5} scale={[1.5, 0.19, 0.5]} position-y={-1.5} position-x={-2} position-z={-6} />
-      <Mountain opacity={0.5} scale={[1.5, 0.19, 0.4]} position-y={-1} position-x={2} position-z={-12} />
+      <Mountain opacity={0.5} scale={[1.5,0.19, 0.4]} position-y={-1} position-x={2} position-z={-12} />
       <Mountain opacity={0.5} scale={[1, 0.19, 1]} position-y={-1.5} position-x={2} position-z={-75} />
       <Mountain opacity={0.5} scale={[1, 0.19,0.5]} position-y={-0.5} position-x={-4} position-z={-40} />
       <Mountain opacity={0.5} scale={[1, 0.19,0.5]} position-y={-0.5} position-x={-4} position-z={-100} />
@@ -142,10 +142,10 @@ const Tunnel = ({position,lerping}) => {
                 textAlign="center"
                 fillOpacity={1}
                 maxWidth={6}
-                letterSpacing={0.3}
+                letterSpacing={0.1}
                 // font={"./fonts/Inter-Regular.ttf"}
               >
-                Emmanuel
+               Mario Francisco
             </Text>
         </group>
       <MyText />

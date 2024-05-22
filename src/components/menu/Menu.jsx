@@ -4,7 +4,7 @@ import Stepper from "@mui/material/Stepper";
 import { makeStyles } from '@material-ui/core/styles';
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import annotations from '../../annotations.json';
+import annotations from '../../constants/annotations.json';
 import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme) => ({
