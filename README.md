@@ -59,4 +59,4 @@ To get started with Immersive scroll, follow these steps:
    npm install --legacy-peer-deps
    ```
 
-Enjoy ;) 🌟✨
+Enjoy the Demo [here](https://3d-immersive-scroll.vercel.app/) ;) 🌟✨
